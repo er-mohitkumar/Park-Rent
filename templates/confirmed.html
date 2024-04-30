@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @keyframes drawSmiley {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100px;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    border-radius: 50%;
+  }
+  50% {
+    border-radius: 70%;
+  }
+  100% {
+    border-radius: 50%;
+  }
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.smiley-container {
+  display: flex;
+  align-items: center;
+}
+
+.smiley {
+  width: 0;
+  height: 50px;
+  border: 4px solid #27ae60;
+  border-radius: 50%;
+  position: relative;
+  animation: drawSmiley 1s forwards, pulse 2s infinite;
+  overflow: hidden;
+}
+
+.smiley:before,
+.smiley:after {
+  content: "";
+  position: absolute;
+  background: #27ae60;
+  border-radius: 50%;
+}
+
+.smiley:before {
+  width: 20px;
+  height: 20px;
+  top: 20%;
+  left: 20%;
+}
+
+.smiley:after {
+  width: 20px;
+  height: 20px;
+  top: 20%;
+  right: 20%;
+}
+
+.smile {
+  width: 30px;
+  height: 10px;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #27ae60;
+  border-radius: 0 0 50% 50%;
+}
+
+.confirmation-text {
+  margin-left: 10px;
+  font-size: 24px;
+  color: #27ae60;
+  opacity: 0;
+  animation: drawSmiley 1s forwards;
+  animation-delay: 0.5s;
+}
+    
+  </style>
+</head>
+<body>
+
+  <div class="smiley-container">
+    <div class="smiley">
+      <div class="smile"></div>
+    </div>
+    <div class="confirmation-text"><b>BOOKING CONFIRMED</b></div>
+    <script>
+      setTimeout(function() {
+        window.location.href = '/book';
+      }, 2000);
+    </script>
+  </div>
+
+</body>
+</html>

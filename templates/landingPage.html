@@ -1,0 +1,1240 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Wheelos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'main.css' %}" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+ 
+</head>
+  <title>WheelOS</title>
+
+
+  <!-- bootstrap core css -->
+  <!-- <link rel="stylesheet" type="text/css" href="{% static '' %}" /> -->
+  <!-- font awesome style -->
+  
+
+  <style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+    @media (max-width: 1300px) {}
+
+@media (max-width: 1120px) {}
+
+@media (max-width: 992px) {
+  .hero_area {
+    min-height: auto;
+  }
+  
+
+  .custom_nav-container .form-inline {
+    justify-content: center;
+  }
+
+  .custom_nav-container .navbar-nav .nav-item .nav-link {
+    padding: 5px 15px;
+  }
+
+  .custom_nav-container .navbar-nav {
+    padding-top: 15px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .custom_nav-container .navbar-nav .nav-item .nav-link {
+    padding: 5px 25px;
+    margin: 5px 0;
+  }
+
+  .about_section .detail-box {
+    margin-top: 45px;
+  }
+
+  .pricing_section .box {
+    margin-top: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info_section .contact_nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .info_section .contact_nav a:not(:nth-last-child(1)) {
+    margin-bottom: 25px;
+  }
+
+  .info_section .contact_nav a {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .info_section .info_top {
+    padding: 0;
+  }
+
+  .info_section .info_top .row>div {
+    margin-bottom: 35px;
+  }
+}
+
+@media (max-width: 576px) {}
+
+@media (max-width: 480px) {
+  .slider_section .detail-box h1 {
+    font-size: 2rem;
+  }
+
+}
+
+@media (max-width: 420px) {}
+
+@media (max-width: 376px) {}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+p {
+  font-weight: 400;
+}
+
+button {
+  font-weight: 500;
+}
+    body{
+      background: linear-gradient(120deg,#fff, #92E5F7);
+    }
+    
+    .logo{
+      display:flex;
+      align-item:center;
+      justify-content:center;
+    }
+    .WheelOS{
+      display:flex;
+      margin: auto;
+      padding-left:20px;
+    }
+    .road {
+      position: relative;
+      width: 700px;
+      height: 150px;
+      background: #333;
+      border-radius: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+      perspective: 500px;
+    }
+    
+    .road::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #fff, #fff 50%, transparent 50%, transparent 100%);
+      background-size: 50px;
+      animation: animate_road 0.125s linear infinite;
+    }
+    
+    @keyframes animate_road {
+      0% {
+          background-position: 50px 0;
+      }
+    
+      100% {
+          background-position: 0 0;
+      }
+    }
+    
+    .taxi {
+      position: absolute;
+      left: 50px;
+      width: 200px;
+      height: 80px;
+      background: #f4b603;
+      border-radius: 10px;
+      box-shadow: -10px 10px rgba(0, 0, 0, 0.25);
+      transform-style: preserve-3d;
+      perspective: 800px;
+      animation: animate_taxi 2s linear infinite;
+      z-index: 10;
+    }
+    
+    
+    .taxi:nth-child(2) {
+      left: initial;
+      right: 150px;
+      animation: animate_taxi 4s linear infinite;
+      animation-delay: -1s;
+      z-index: 9;
+    }
+    
+    @media only screen and (max-width: 600px) {
+      .road {
+        position: relative;
+        width: 550px;
+        height: 150px;
+        background: #333;
+        border-radius: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+        perspective: 500px;
+      }
+    
+      .taxi {
+        position: absolute;
+        left: 50px;
+        width: 200px;
+        height: 80px;
+        background: #f4b603;
+        border-radius: 10px;
+        box-shadow: -10px 10px rgba(0, 0, 0, 0.25);
+        transform-style: preserve-3d;
+        perspective: 800px;
+        animation: animate_taxi 2s linear infinite;
+        z-index: 10;
+      }
+    
+      .taxi:nth-child(2) {
+        left: initial;
+        right: 50px;
+        animation: animate_taxi 4s linear infinite;
+        animation-delay: -1s;
+        z-index: 9;
+      }
+    }
+    
+    @keyframes animate_taxi {
+      0% {
+          transform: translateX(20px) translateY(-20px);
+      }
+    
+      25% {
+          transform: translateX(-10px) translateY(0px);
+      }
+    
+      50% {
+          transform: translateX(20px) translateY(20px);
+      }
+    
+      75% {
+          transform: translateX(-10px) translateY(0px);
+      }
+    
+      100% {
+          transform: translateX(20px) translateY(-20px);
+      }
+    }
+    
+    .taxi::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 2px;
+      width: 5px;
+      height: 15px;
+      border-radius: 2px;
+      background: #fc3c25;
+      box-shadow: 0 42px #fc3c25;
+    }
+    
+    .taxi::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 2px;
+      width: 6px;
+      height: 16px;
+      border-radius: 2px;
+      background: #fff;
+      box-shadow: 0 44px #fff;
+    }
+    
+    .taxi span {
+      position: absolute;
+      inset: 5px 10px;
+      background: #fdd206;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .taxi span::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      background: #fff;
+      padding: 2px;
+      font-size: 0.75em;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px #0005;
+      z-index: 10;
+    }
+    
+    .taxi span b {
+      position: absolute;
+      inset: 0 30px;
+      background: #111;
+      border-radius: 10px;
+    }
+    
+    .taxi span b::before {
+      content: '';
+      position: absolute;
+      inset: 6px 25px;
+      background: #fdd206;
+      border-radius: 5px;
+    }
+    
+    .taxi span b::after {
+      content: '';
+      position: absolute;
+      inset: 0px 58px;
+      background: #fdd206;
+    }
+    
+    .taxi span i {
+      position: absolute;
+      inset: 0;
+    }
+    
+    .taxi span i::before {
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 20px;
+      width: 40px;
+      height: 5px;
+      background: #fdd206;
+      transform-origin: right;
+      transform: rotate(15deg);
+      box-shadow: 100px 34px #fdd206;
+    }
+    
+    .taxi span i::after {
+      content: '';
+      position: absolute;
+      bottom: 7px;
+      left: 20px;
+      width: 40px;
+      height: 5px;
+      background: #fdd206;
+      transform-origin: right;
+      transform: rotate(-15deg);
+      box-shadow: 100px -34px #fdd206;
+    }
+    
+    .taxi .light_beam {
+      position: absolute;
+      top: 5px;
+      right: -2px;
+      width: 10px;
+      height: 70px;
+      background: #0002;
+      border-radius: 15px;
+      transform-style: preserve-3d;
+    }
+    
+    .taxi .light_beam::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 150px;
+      height: 16px;
+      background: linear-gradient(90deg, #fff6, transparent);
+      transform-origin: left;
+      transform: perspective(500px) rotateY(-50deg);
+    }
+    
+    .taxi .light_beam::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 150px;
+      height: 16px;
+      background: linear-gradient(90deg, #fff6, transparent);
+      transform-origin: left;
+      transform: perspective(500px) rotateY(-50deg);
+    }
+    
+    
+    .register_login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5%;
+    }
+    
+    .content > div {
+      margin: 10px;
+    }
+    
+    .content .reg_l {
+      color: black;
+      display: flex;
+      justify-content: center;
+    }
+    
+    
+    .content .reg_l button {
+      background-color: #f4b603;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      height: 50%;
+      padding: 10px;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    
+    .content .separator-text span {
+      color: black;
+      text-decoration: none;
+    }
+    
+    .content .separator-text:before {
+      display: none;
+    }
+    
+    .content .separator-text:after {
+      display: none;
+    }
+    
+    
+    
+    a{
+      color: #000000;
+    }
+    
+    
+    body {
+      font-family: "Roboto", sans-serif;
+      color: black;
+      overflow-x: hidden;
+    
+    }
+    
+    
+    .layout_padding {
+      padding: 90px 0;
+    }
+    
+    .layout_padding2 {
+      padding: 75px 0;
+    }
+    
+    .layout_padding2-top {
+      padding-top: 75px;
+    }
+    
+    .layout_padding2-bottom {
+      padding-bottom: 75px;
+    }
+    
+    .layout_padding-top {
+      padding-top: 90px;
+    }
+    
+    .layout_padding-bottom {
+      padding-bottom: 90px;
+    }
+    
+    .heading_container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+    }
+    
+    .heading_container h2 {
+      position: relative;
+      font-weight: bold;
+    }
+    
+    .heading_container.heading_center {
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      text-align: center;
+    }
+    
+    a,
+    a:hover,
+    a:focus {
+      text-decoration: none;
+    }
+    
+    a:hover,
+    a:focus {
+      color: initial;
+    }
+    
+    .btn,
+    .btn:focus {
+      outline: none !important;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+    }
+    
+    /*header section*/
+    .hero_area {
+      color: black;
+      position: relative;
+      min-height: 100vh;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+    
+    .bg-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .bg-box img {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
+    }
+    
+    .bg-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: -webkit-gradient(linear, left top, right top, from(rgba(21, 82, 99, 0.65)), to(rgba(21, 82, 99, 0.55)));
+      background: linear-gradient(to right, rgba(21, 82, 99, 0.65), rgba(21, 82, 99, 0.55));
+    }
+    
+    .sub_page .hero_area {
+      min-height: auto;
+    }
+    
+    .sub_page .header_section {
+      margin-top: 0;
+      -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+              box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+    }
+    
+    .header_section {
+      padding: 10px 0;
+    }
+    
+    .header_section .container-fluid {
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+    
+    .navbar-brand span {
+      color: black;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    
+    .custom_nav-container {
+      padding: 0;
+    }
+    
+    .custom_nav-container .navbar-nav {
+      margin-left: auto;
+    }
+    
+    .custom_nav-container .navbar-nav .nav-item .nav-link {
+      padding: 7px 20px;
+      color:black;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    
+    .custom_nav-container .navbar-nav .nav-item.active .nav-link {
+      background-color: #f4b603;
+      
+    }
+    
+    
+    .custom_nav-container .nav_search-btn {
+      width: 35px;
+      height: 35px;
+      padding: 0;
+      border: none;
+      color: black;
+    }
+    
+    .custom_nav-container .nav_search-btn:hover {
+      color: #f4b603;
+    }
+    
+    .custom_nav-container .navbar-toggler {
+      outline: none;
+    }
+    
+    .custom_nav-container .navbar-toggler {
+      padding: 0;
+      width: 37px;
+      height: 42px;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    
+    .custom_nav-container .navbar-toggler span {
+      display: block;
+      width: 35px;
+      height: 4px;
+      background-color: #f4b603;
+      margin: 7px 0;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      position: relative;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    
+    .custom_nav-container .navbar-toggler span::before, .custom_nav-container .navbar-toggler span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #f4b603;
+      top: -10px;
+      border-radius: 5px;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    
+    .custom_nav-container .navbar-toggler span::after {
+      top: 10px;
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="true"] {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="true"] span {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="true"] span::before, .custom_nav-container .navbar-toggler[aria-expanded="true"] span::after {
+      -webkit-transform: rotate(90deg);
+              transform: rotate(90deg);
+      top: 0;
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="true"] .s-1 {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      margin: 0;
+      margin-bottom: -4px;
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="true"] .s-2 {
+      display: none;
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="true"] .s-3 {
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      margin: 0;
+      margin-top: -4px;
+    }
+    
+    .custom_nav-container .navbar-toggler[aria-expanded="false"] .s-1,
+    .custom_nav-container .navbar-toggler[aria-expanded="false"] .s-2,
+    .custom_nav-container .navbar-toggler[aria-expanded="false"] .s-3 {
+      -webkit-transform: none;
+              transform: none;
+    }
+    
+    .quote_btn-container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+    }
+    
+    .quote_btn-container a {
+      color: #000000;
+      text-transform: uppercase;
+    }
+    
+    .quote_btn-container a span {
+      margin-left: 5px;
+    }
+    
+    .quote_btn-container a:hover {
+      color: #155263;
+    }
+    
+    .quote_btn-container .quote_btn {
+      display: inline-block;
+      padding: 5px 25px;
+      background-color: #f4b603;
+      color: #ffffff;
+      border-radius: 5px;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      border: none;
+    }
+    
+    .quote_btn-container .quote_btn:hover {
+      background-color: #ef3e00;
+    }
+    
+    /*end header section*/
+    /* slider section */
+    .slider_section {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      padding: 90px 0 145px 0;
+      position: relative;
+    }
+    
+    .slider_section .row {
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+    }
+    
+    .slider_section .find_form_container {
+      /* nice select */
+      /* end nice select */
+    }
+    
+    .slider_section .find_form_container .form-group {
+      margin: 15px;
+      position: relative;
+      -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+              box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .slider_section .find_form_container .input-group-text {
+      width: 50px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      background-color: #f7f8f3;
+      border: none;
+    }
+    
+    .slider_section .find_form_container label {
+      color: black;
+    }
+    
+    .slider_section .find_form_container .form-control {
+      height: 50px;
+      outline: none;
+      border: none;
+      position: relative;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      background-color: #f7f8f3;
+    }
+    
+    .slider_section .find_form_container .form-control::-webkit-input-placeholder {
+      font-size: 14px;
+    }
+    
+    .slider_section .find_form_container .form-control:-ms-input-placeholder {
+      font-size: 14px;
+    }
+    
+    .slider_section .find_form_container .form-control::-ms-input-placeholder {
+      font-size: 14px;
+    }
+    
+    .slider_section .find_form_container .form-control::placeholder {
+      font-size: 14px;
+    }
+    
+    .slider_section .find_form_container .form-control.nice-select {
+      line-height: 39px;
+    }
+    
+    .slider_section .find_form_container .nice-select ul {
+      width: 100%;
+      padding: 0;
+    }
+    
+    .slider_section .find_form_container .nice-select::after {
+      right: 15px;
+      border: none;
+      border-top: 5px solid #ccc;
+      border-right: 5px solid transparent;
+      border-bottom: 0;
+      border-left: 5px solid transparent;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    
+    .slider_section .find_form_container .nice-select.open::after {
+      -webkit-transform: rotate(-180deg);
+              transform: rotate(-180deg);
+    }
+    
+    .slider_section .find_form_container .btn-box {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      margin-top: 25px;
+    }
+    
+    .slider_section .find_form_container .btn-box button {
+      display: inline-block;
+      padding: 12px 50px;
+      background-color: #f4b603;
+      color: #ffffff;
+      border-radius: 45x;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      border: none;
+    }
+    
+    .slider_section .find_form_container .btn-box button:hover {
+      background-color: #ef3e00;
+    }
+    
+    .slider_section #customCarousel1 {
+      width: 100%;
+      position: unset;
+    }
+    
+    .slider_section .detail-box {
+      color: #155263;
+      text-align: center;
+    }
+    
+    .slider_section .detail-box h1 {
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: black;
+    }    
+    /* footer section*/
+.footer_section {
+  position: relative;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.footer_section p {
+  color: #155263;
+  padding: 25px 0;
+  margin: 0;
+}
+
+.footer_section p a {
+  color: inherit;
+}
+  </style>
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- <div class="bg-box">
+      <img src="images/slider-bg.jpg" alt="">
+    </div> -->
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="{% url 'landingPage' %}">
+            <div class='logo'>
+              <div >
+                <svg height="50px" width="50px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     viewBox="0 0 503.322 503.322" xml:space="preserve">
+  <g>
+    <path style="fill:#CAD3DB;" d="M425.222,442.576c-4.799,0-8.678-3.879-8.678-8.678V147.525c0-4.799,3.879-8.678,8.678-8.678
+      c4.799,0,8.678,3.879,8.678,8.678v286.373C433.9,438.697,430.021,442.576,425.222,442.576L425.222,442.576z"/>
+    <path style="fill:#25B99A;" d="M347.12,303.729h-4.322c-7.723,0-14.518-5.103-16.67-12.514l-30.651-105.533
+      c-5.528-12.635-18.015-20.801-31.805-20.801H100.805c-13.789,0-26.277,8.166-31.805,20.801L38.35,291.215
+      c-2.152,7.411-8.947,12.514-16.67,12.514h-4.322c-9.589,0-17.356,7.767-17.356,17.356v95.458c0,9.589,7.767,17.356,17.356,17.356
+      H347.12c9.589,0,17.356-7.767,17.356-17.356v-95.458C364.476,311.496,356.71,303.729,347.12,303.729"/>
+    <g>
+      <path style="fill:#485762;" d="M60.748,503.322H43.392c-9.589,0-17.356-7.767-17.356-17.356v-52.068h52.068v52.068
+        C78.103,495.555,70.337,503.322,60.748,503.322"/>
+      <path style="fill:#485762;" d="M321.086,503.322h-17.356c-9.589,0-17.356-7.767-17.356-17.356v-52.068h52.068v52.068
+        C338.442,495.555,330.676,503.322,321.086,503.322"/>
+    </g>
+    <g>
+      <path style="fill:#FFD06C;" d="M95.459,364.475c0,14.379-11.655,26.034-26.034,26.034s-26.034-11.655-26.034-26.034
+        s11.655-26.034,26.034-26.034S95.459,350.095,95.459,364.475"/>
+      <path style="fill:#FFD06C;" d="M321.086,364.475c0,14.379-11.655,26.034-26.034,26.034c-14.379,0-26.034-11.655-26.034-26.034
+        s11.655-26.034,26.034-26.034C309.432,338.441,321.086,350.095,321.086,364.475"/>
+    </g>
+    <g>
+      <path style="fill:#485762;" d="M199.595,390.508h-34.712c-4.799,0-8.678-3.879-8.678-8.678s3.879-8.678,8.678-8.678h34.712
+        c4.799,0,8.678,3.879,8.678,8.678S204.394,390.508,199.595,390.508"/>
+      <path style="fill:#485762;" d="M216.951,355.797h-69.424c-4.799,0-8.678-3.879-8.678-8.678c0-4.799,3.879-8.678,8.678-8.678
+        h69.424c4.799,0,8.678,3.879,8.678,8.678C225.629,351.918,221.75,355.797,216.951,355.797"/>
+    </g>
+    <path style="fill:#D0E8F9;" d="M266.033,286.373H98.445c-5.814,0-9.98-5.606-8.313-11.169l20.827-69.424
+      c1.102-3.671,4.478-6.187,8.313-6.187h125.935c3.836,0,7.211,2.517,8.313,6.187l20.827,69.424
+      C276.013,280.767,271.848,286.373,266.033,286.373"/>
+    <polygon style="fill:#485762;" points="373.151,503.322 477.286,503.322 477.286,468.61 373.151,468.61 	"/>
+    <polygon style="fill:#95ACB9;" points="399.185,468.61 451.253,468.61 451.253,433.898 399.185,433.898 	"/>
+    <polygon style="fill:#2080E0;" points="355.795,147.525 503.32,147.525 503.32,0 355.795,0 	"/>
+    <g>
+      <path style="fill:#FFFFFF;" d="M416.544,121.492c-4.799,0-8.678-3.879-8.678-8.678V34.712c0-4.799,3.879-8.678,8.678-8.678
+        c4.799,0,8.678,3.879,8.678,8.678v78.102C425.222,117.612,421.343,121.492,416.544,121.492"/>
+      <path style="fill:#FFFFFF;" d="M425.222,78.102h8.678c9.572,0,17.356-7.784,17.356-17.356S443.472,43.39,433.9,43.39h-8.678
+        V78.102z M433.9,95.458h-17.356c-4.799,0-8.678-3.879-8.678-8.678V34.712c0-4.799,3.879-8.678,8.678-8.678H433.9
+        c19.144,0,34.712,15.568,34.712,34.712S453.044,95.458,433.9,95.458L433.9,95.458z"/>
+    </g>
+  </g>
+  </svg>
+  </div>
+              <span class="WheelOS">
+                WheelOS
+              </span>
+            </div>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'landingPage' %}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item" >
+                <a class="nav-link" href="#about"> About</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div class="container">
+        <div class="detail-box col-md-9 mx-auto px-0">
+          <h1>
+            Finding Parking In Your Area Made Easy
+          </h1>
+          <p>
+            Rent a vehicle for your next adventure or optimize your parking space by providing it to others with WheelOS
+          </p>
+        </div>
+        <div class="register_login">
+          <div class="content">
+            <a href='{% url 'register' %}'>
+              <div class="reg_l">
+                <button>
+                  Register
+                </button>
+              </div>
+            </a>
+            <br>
+            <div class="separator">
+              <div class="road">
+                <div class="taxi">
+                    <div class="light_beam"></div>
+                    <span>
+                        <b></b>
+                        <i></i>
+                    </span>
+                </div>
+                <div class="taxi">
+                    <div class="light_beam"></div>
+                    <span>
+                        <b></b>
+                        <i></i>
+                    </span>
+                </div>
+            </div>
+            <br>
+            </div>
+            <a href="{% url 'login' %}">
+              <div class="reg_l">
+                <button>
+                  LogIn
+                </button>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+<!-- about section -->
+
+<section class="about_section layout_padding" id="about">
+  <div class="container  ">
+    <div class="heading_container ">
+      <h2>
+        About Us
+      </h2>
+      <p>
+        Rent a vehicle for your next adventure or optimize your parking space by providing it to others with WheelOS
+      </p>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-6 ">
+        <div class="img-box">
+          <svg height="80%" width="80%" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 504.123 504.123" xml:space="preserve">
+<path style="fill:#F46F0C;" d="M429.3,188.881c-4.758,0-9.578-1.308-13.903-4.049L252.062,81.503L88.726,184.84
+	c-12.17,7.696-28.247,4.08-35.935-8.074c-7.696-12.17-4.08-28.247,8.082-35.935L252.062,19.858l191.181,120.966
+	c12.162,7.696,15.785,23.773,8.082,35.935C446.377,184.596,437.941,188.873,429.3,188.881z"/>
+<path style="fill:#EA4918;" d="M88.726,184.84L252.062,81.503L415.397,184.84c4.324,2.741,9.137,4.049,13.903,4.049
+	c7.712-0.016,15.116-3.584,20.181-9.893c-1.757-2.15-3.765-4.12-6.231-5.679L252.062,52.35L60.873,173.316
+	c-2.481,1.568-4.529,3.568-6.286,5.742C62.779,189.251,77.399,192.008,88.726,184.84z"/>
+<path style="fill:#657272;" d="M492.796,382.456h-1.725c-17.715-42.772-51.665-49.955-107.244-55.312L291.808,253.7
+	c-1.505-1.197-3.371-1.851-5.293-1.851H65.583c-3.017,0-5.813,1.615-7.341,4.238l-46.844,81.132c-1.504,2.623-1.504,5.853,0,8.483
+	l7.341,12.713h-1.063c-4.679,0-8.491,3.805-8.491,8.483v77.777c0,4.695,3.812,8.483,8.491,8.483h394.524h29.696h50.909
+	c4.687,0,8.476-3.789,8.476-8.483v-53.728C501.28,386.253,497.483,382.456,492.796,382.456z"/>
+<path style="fill:#525E5E;" d="M492.796,382.456h-1.725c-8.428-27.782-51.665-49.955-107.244-55.312L291.808,253.7
+	c-1.505-1.197-3.19,2.198-5.104,2.198H80.597c-3.033,0-20.834-2.442-22.355,0.181l-46.844,81.132c-1.504,2.623-1.504,5.853,0,8.483
+	l7.341,12.713h-1.063c-4.679,0-8.491,3.805-8.491,8.483v77.777c0,4.695,3.812,8.483,8.491,8.483h394.524h29.696h50.909
+	c4.687,0,8.476-3.789,8.476-8.483V390.94C501.28,386.253,497.483,382.456,492.796,382.456z"/>
+<path style="fill:#384242;" d="M9.184,410.734v33.942c0,4.695,3.812,8.483,8.491,8.483h394.524h29.696h50.909
+	c4.687,0,8.476-3.789,8.476-8.483v-33.942L9.184,410.734L9.184,410.734z"/>
+<path style="fill:#222B2B;" d="M504.123,449.607c0,4.301-3.489,7.775-7.782,7.775H7.767c-4.293,0-7.767-3.474-7.767-7.775l0,0
+	c0-4.293,3.474-7.767,7.767-7.767h488.566C500.634,441.84,504.123,445.314,504.123,449.607L504.123,449.607z"/>
+<path d="M51.121,441.62c0-25.017,20.291-45.308,45.316-45.308s45.3,20.291,45.3,45.308"/>
+<path style="fill:#222B2B;" d="M143.573,441.62h-3.663c0-23.977-19.511-43.481-43.473-43.481c-23.977,0-43.488,19.503-43.488,43.481
+	h-3.655c0-25.994,21.157-47.135,47.143-47.135C122.423,394.484,143.573,415.634,143.573,441.62z"/>
+<circle style="fill:#203547;" cx="96.421" cy="443.376" r="40.881"/>
+<path style="fill:#122130;" d="M125.338,414.468c15.974,15.974,15.974,41.85,0,57.817c-15.967,15.959-41.85,15.959-57.817,0"/>
+<circle style="fill:#21AA6F;" cx="96.429" cy="443.376" r="25.71"/>
+<path style="fill:#118E55;" d="M114.601,425.196c10.051,10.043,10.043,26.317,0,36.368c-10.027,10.027-26.293,10.027-36.352,0"/>
+<circle style="fill:#CED8DD;" cx="96.429" cy="443.376" r="22.504"/>
+<path style="fill:#B2BBC1;" d="M112.341,427.473c8.791,8.783,8.791,23.04,0,31.823c-8.783,8.791-23.032,8.783-31.823,0"/>
+<path style="opacity:0.2;fill:#888F91;enable-background:new    ;" d="M106.874,443.376c0,5.774-4.679,12.123-10.445,12.123
+	c-5.758,0-10.445-6.349-10.445-12.123s4.687-10.437,10.445-10.437C102.203,432.939,106.874,437.602,106.874,443.376z"/>
+<circle style="fill:#E7EFF2;" cx="96.429" cy="443.376" r="10.445"/>
+<path style="fill:#DAE6EA;" d="M96.429,432.939c5.766,0,10.445,4.663,10.445,10.437s-4.679,10.453-10.445,10.453"/>
+<path style="fill:#666E70;" d="M96.429,420.88c-1.032,0-2.032,0.095-3.017,0.228c0.402,3.23,1.599,5.577,3.017,5.577
+	c1.402,0,2.591-2.347,3.017-5.577C98.462,420.966,97.461,420.88,96.429,420.88z"/>
+<path style="fill:#535A5B;" d="M96.429,426.685c1.402,0,2.591-2.347,3.017-5.577c-0.985-0.142-1.985-0.228-3.017-0.228"/>
+<path style="fill:#666E70;" d="M93.428,465.597c1.985,0.276,4.001,0.276,6.018,0c-0.449-3.214-1.615-5.522-3.017-5.522
+	C95.011,460.075,93.846,462.383,93.428,465.597z"/>
+<path style="fill:#535A5B;" d="M99.446,465.597c-0.449-3.214-1.615-5.522-3.017-5.522"/>
+<path style="fill:#666E70;" d="M78.533,429.773c2.591,1.993,5.088,2.796,6.081,1.804c1-0.992,0.189-3.489-1.796-6.081
+	C81.195,426.724,79.77,428.15,78.533,429.773z"/>
+<path style="fill:#535A5B;" d="M84.614,431.577c1-0.992,0.189-3.489-1.796-6.081"/>
+<path style="fill:#666E70;" d="M114.263,456.932c-2.576-1.938-5.033-2.733-6.026-1.749c-1.008,1-0.205,3.458,1.764,6.034
+	c0.788-0.614,1.631-1.197,2.339-1.922C113.065,458.571,113.64,457.744,114.263,456.932z"/>
+<path style="fill:#535A5B;" d="M112.341,459.296c0.725-0.725,1.3-1.544,1.922-2.363c-2.576-1.938-5.033-2.733-6.026-1.749"/>
+<path style="fill:#666E70;" d="M74.153,446.409c3.23-0.441,5.569-1.615,5.569-3.033c0.016-1.394-2.339-2.584-5.569-3.025
+	c-0.142,0.992-0.228,2.001-0.228,3.025C73.925,444.408,74.012,445.409,74.153,446.409z"/>
+<path style="fill:#535A5B;" d="M79.722,443.376c0.016-1.394-2.339-2.584-5.569-3.025c-0.142,0.992-0.228,2.001-0.228,3.025"/>
+<path style="fill:#666E70;" d="M113.12,443.376c0,1.41,2.308,2.591,5.506,3.025c0.291-2.016,0.291-4.017,0.016-6.042
+	C115.428,440.801,113.12,441.982,113.12,443.376z"/>
+<path style="fill:#535A5B;" d="M118.642,440.359c-3.214,0.441-5.522,1.623-5.522,3.017"/>
+<path style="fill:#666E70;" d="M78.541,456.995c1.229,1.623,2.655,3.048,4.285,4.285c1.985-2.599,2.788-5.089,1.796-6.081
+	C83.621,454.199,81.148,455.003,78.541,456.995z"/>
+<path style="fill:#535A5B;" d="M82.826,461.281c1.985-2.599,2.788-5.089,1.796-6.081"/>
+<path style="fill:#666E70;" d="M110.048,425.504c-1.993,2.584-2.812,5.088-1.804,6.073c0.992,0.992,3.482,0.181,6.081-1.796
+	C113.089,428.15,111.655,426.724,110.048,425.504z"/>
+<path style="fill:#535A5B;" d="M110.048,425.504c-1.993,2.584-2.812,5.088-1.804,6.073"/>
+<path d="M365.032,441.62c0-25.017,20.275-45.308,45.308-45.308c25.017,0,45.308,20.291,45.308,45.308"/>
+<path style="fill:#222B2B;" d="M457.468,441.62h-3.655c0-23.977-19.503-43.481-43.481-43.481c-23.977,0-43.481,19.503-43.481,43.481
+	h-3.647c0-25.994,21.157-47.135,47.12-47.135C436.334,394.484,457.468,415.634,457.468,441.62z"/>
+<circle style="fill:#203547;" cx="410.34" cy="443.376" r="40.889"/>
+<path style="fill:#122130;" d="M439.249,414.468c15.974,15.974,15.974,41.85,0,57.817c-15.982,15.959-41.858,15.959-57.832,0"/>
+<circle style="fill:#21AA6F;" cx="410.34" cy="443.376" r="25.718"/>
+<path style="fill:#118E55;" d="M428.505,425.196c10.043,10.043,10.035,26.317,0,36.368c-10.035,10.027-26.309,10.027-36.352,0"/>
+<circle style="fill:#CED8DD;" cx="410.333" cy="443.376" r="22.496"/>
+<path style="fill:#B2BBC1;" d="M426.244,427.473c8.783,8.783,8.783,23.04,0,31.823c-8.791,8.791-23.048,8.783-31.839,0"/>
+<path style="opacity:0.2;fill:#888F91;enable-background:new    ;" d="M420.801,443.376c0,5.774-4.703,12.123-10.468,12.123
+	c-5.758,0-10.445-6.349-10.445-12.123s4.687-10.437,10.445-10.437C416.098,432.939,420.801,437.602,420.801,443.376z"/>
+<circle style="fill:#E7EFF2;" cx="410.34" cy="443.376" r="10.461"/>
+<path style="fill:#DAE6EA;" d="M410.333,432.939c5.766,0,10.468,4.663,10.468,10.437s-4.703,10.453-10.468,10.453"/>
+<path style="fill:#666E70;" d="M410.333,420.88c-1.024,0-2.009,0.095-3.017,0.228c0.418,3.23,1.607,5.577,3.017,5.577
+	s2.607-2.347,3.04-5.577C412.373,420.966,411.38,420.88,410.333,420.88z"/>
+<path style="fill:#535A5B;" d="M410.333,426.685c1.41,0,2.607-2.347,3.04-5.577c-1-0.142-1.993-0.228-3.04-0.228"/>
+<path style="fill:#666E70;" d="M407.324,465.597c2.001,0.276,4.025,0.276,6.049,0c-0.48-3.214-1.646-5.522-3.04-5.522
+	C408.923,460.075,407.741,462.383,407.324,465.597z"/>
+<path style="fill:#535A5B;" d="M413.373,465.597c-0.48-3.214-1.646-5.522-3.04-5.522"/>
+<path style="fill:#666E70;" d="M392.428,429.773c2.615,1.993,5.088,2.796,6.097,1.804c0.992-0.992,0.165-3.489-1.804-6.081
+	C395.106,426.724,393.681,428.15,392.428,429.773z"/>
+<path style="fill:#535A5B;" d="M398.533,431.577c0.992-0.992,0.165-3.489-1.804-6.081"/>
+<path style="fill:#666E70;" d="M428.15,456.932c-2.552-1.938-5.018-2.733-6.018-1.749c-0.992,1-0.181,3.458,1.757,6.034
+	c0.811-0.614,1.631-1.197,2.355-1.922S427.552,457.744,428.15,456.932z"/>
+<path style="fill:#535A5B;" d="M426.244,459.296c0.725-0.725,1.308-1.544,1.906-2.363c-2.552-1.938-5.018-2.733-6.018-1.749"/>
+<path style="fill:#666E70;" d="M388.064,446.409c3.222-0.441,5.569-1.615,5.569-3.033c0.016-1.394-2.347-2.584-5.569-3.025
+	c-0.134,0.992-0.228,2.001-0.228,3.025C387.828,444.408,387.931,445.409,388.064,446.409z"/>
+<path style="fill:#535A5B;" d="M393.633,443.376c0.016-1.394-2.347-2.584-5.569-3.025c-0.134,0.992-0.228,2.001-0.228,3.025"/>
+<path style="fill:#666E70;" d="M427.032,443.376c0,1.41,2.308,2.591,5.506,3.025c0.284-2.016,0.284-4.017,0.016-6.042
+	C429.34,440.801,427.032,441.982,427.032,443.376z"/>
+<path style="fill:#535A5B;" d="M432.553,440.359c-3.214,0.441-5.522,1.623-5.522,3.017"/>
+<path style="fill:#666E70;" d="M392.428,456.995c1.245,1.623,2.678,3.048,4.293,4.285c1.977-2.599,2.796-5.089,1.804-6.081
+	C397.525,454.199,395.043,455.003,392.428,456.995z"/>
+<path style="fill:#535A5B;" d="M396.721,461.281c1.977-2.599,2.796-5.089,1.804-6.081"/>
+<path style="fill:#666E70;" d="M423.952,425.504c-1.985,2.584-2.804,5.088-1.812,6.073c1,0.992,3.49,0.181,6.089-1.796
+	C427.008,428.15,425.551,426.724,423.952,425.504z"/>
+<path style="fill:#535A5B;" d="M423.952,425.504c-1.985,2.584-2.804,5.088-1.812,6.073"/>
+<path style="fill:#EA7C0F;" d="M451.261,382.275h39.771c-1.694-5.427-4.742-10.642-8.925-15.557h-44.292L451.261,382.275z"/>
+<path style="fill:#FFA300;" d="M442.951,366.726l13.438,15.557h34.635c-1.694-5.427-4.742-10.642-8.925-15.557H442.951z"/>
+<path style="fill:#BC043D;" d="M10.587,343.741c0.197,0.677,0.449,1.331,0.819,1.953l6.94,12.02h37.683l-18.558-16.967H10.587
+	V343.741z"/>
+<g>
+	<path style="fill:#51859B;" d="M261.246,326.947h122.352l-74.413-59.392h-47.939c-4.695,0-8.491,3.797-8.491,8.483v42.425
+		C252.755,323.151,256.551,326.947,261.246,326.947z"/>
+	<path style="fill:#51859B;" d="M112.632,326.947H28.979l35.714-59.392h47.939c4.695,0,8.483,3.797,8.483,8.483v42.425
+		C121.116,323.151,117.327,326.947,112.632,326.947z"/>
+	<path style="fill:#51859B;" d="M229.124,267.555h-35.541h-12.406h-35.549c-4.679,0-8.476,3.797-8.476,8.483v42.425
+		c0,4.632,3.71,8.365,8.334,8.452l-0.024,0.031h0.165h83.495h0.165l-0.016-0.031c4.616-0.087,8.326-3.82,8.326-8.452v-42.425
+		C237.6,271.352,233.811,267.555,229.124,267.555z"/>
+</g>
+<g>
+	<polygon style="fill:#81B6C9;" points="49.16,293.384 74.988,267.555 64.693,267.555 	"/>
+	<path style="fill:#81B6C9;" d="M112.632,267.555H86.938L31.13,323.379l-2.15,3.568h31.634l57.36-57.36
+		C116.492,268.375,114.688,267.555,112.632,267.555z"/>
+	<polygon style="fill:#81B6C9;" points="121.116,307.326 121.116,291.021 85.189,326.947 101.494,326.947 	"/>
+	<path style="fill:#81B6C9;" d="M237.6,318.464v-9.767l-18.243,18.251h9.767h0.165l-0.016-0.031
+		C233.889,326.829,237.6,323.096,237.6,318.464z"/>
+	<path style="fill:#81B6C9;" d="M235.827,271.092c-1.552-2.095-3.899-3.537-6.711-3.537h-35.541h-12.406h-35.549
+		c-4.679,0-8.476,3.797-8.476,8.483v42.425c0,4.632,3.71,8.365,8.334,8.452l-0.024,0.031h0.165h34.336L235.827,271.092z"/>
+	<path style="fill:#81B6C9;" d="M310.044,268.241l-55.383,55.375c1.56,1.985,3.86,3.332,6.585,3.332h23.142l44.04-44.04
+		L310.044,268.241z"/>
+	<polygon style="fill:#81B6C9;" points="351.161,301.064 342.095,293.825 308.972,326.947 325.278,326.947 	"/>
+	<polygon style="fill:#81B6C9;" points="298.772,267.555 278.741,267.555 252.755,293.541 252.755,313.557 	"/>
+</g>
+<g>
+	<path style="fill:#384242;" d="M284.05,341.26c0,1.764-1.434,3.182-3.182,3.182h-16.967c-1.757,0-3.174-1.426-3.174-3.182l0,0
+		c0-1.757,1.426-3.174,3.174-3.174h16.967C282.616,338.085,284.05,339.511,284.05,341.26L284.05,341.26z"/>
+	<path style="fill:#384242;" d="M163.139,341.26c0,1.764-1.434,3.182-3.174,3.182H142.99c-1.757,0-3.174-1.426-3.174-3.182l0,0
+		c0-1.757,1.426-3.174,3.174-3.174h16.975C161.705,338.085,163.139,339.511,163.139,341.26L163.139,341.26z"/>
+	<path style="fill:#384242;" d="M497.743,388.805c0,1.371-1.103,2.473-2.481,2.473h-70.695c-1.371,0-2.458-1.111-2.458-2.473l0,0
+		c0-1.363,1.095-2.465,2.458-2.465h70.695C496.648,386.339,497.743,387.45,497.743,388.805L497.743,388.805z"/>
+	<path style="fill:#384242;" d="M101.092,388.805c0,1.371-1.103,2.473-2.473,2.473h-70.68c-1.386,0-2.489-1.111-2.489-2.473l0,0
+		c0-1.363,1.111-2.465,2.489-2.465h70.68C99.99,386.339,101.092,387.45,101.092,388.805L101.092,388.805z"/>
+</g>
+<path style="fill:#525E5E;" d="M363.071,324.206c1.623,1.678,1.591,4.387-0.102,6.034l0,0c-1.67,1.631-4.38,1.607-6.026-0.087
+	l-57.643-59.29c-1.646-1.701-1.615-4.403,0.071-6.042l0,0c1.678-1.638,4.387-1.615,6.034,0.087L363.071,324.206z"/>
+</svg>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="detail-box">
+          <h3>
+            We Are Here For Help
+          </h3>
+          <p>
+            WheelOS offers a win-win solution for both parking space owners and
+renters. Homeowners can now monetize their unused parking spots, while
+drivers can save time and money by booking convenient parking spaces
+in advance. With our user-friendly interface and secure payment
+system, booking a parking spot has never been easier.
+          </p>
+          <p>
+            Join our community today and say goodbye to parking woes! Whether
+you're looking to earn extra income or find the perfect parking spot,
+WheelOS is your go-to destination for all your parking needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer_section">
+  <div class="container">
+    <p>
+      &copy; <span id="displayYear"></span> All Rights Reserved By
+      <a href="{% url 'landingPage' %}">WheelOS</a>
+    </p>
+  </div>
+</footer>
+  
+
+</body>
+
+</html>

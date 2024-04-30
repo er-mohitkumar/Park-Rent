@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar-brand {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+
+        .navbar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+
+        .left-half {
+            background-color: #a3d9a5;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+
+        .right-half {
+            background-color: #a3b9ff;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 15%; 
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .left-half .button {
+            background-color: #4CAF50; 
+        }
+
+        .right-half .button {
+            background-color: #008CBA; 
+        }
+
+        .button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .text-left {
+            margin-top: 10px;
+            width: 30%; 
+            color: #006e04; 
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+        .text-right {
+            margin-top: 10px;
+            width: 30%; 
+            color: #003494  ; 
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+        .logout-container {
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 20px; 
+        }
+
+        .logout-button {
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #ff4a29;
+        }
+        .navbar-right {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <small style="font-size: large;" class="navbar-brand">WheelOS</small>
+        <a href="{% url 'display' %}" class="active">Home</a>
+        <!-- <h1>Welcome {{user}}</h1> -->
+        <div class="navbar-right">
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="#" class="navbar-brand">Welcome {{user}}</a>
+        </div>
+    </div>
+    <div class="left-half">
+        <div class="button-container">
+            <a href="{% url 'need' %}" class="button" style="font-size: large;"><b>Rent</b></a>
+        </div>
+        <div class="text-left">
+            <h2 style="text-align: center;">Rent out parking</h2>
+            <p style="text-align: center;">Want to park your vehicle, rent out the place for hassle-free experience</p>
+        </div>
+    </div>
+    <div class="right-half">
+        <div class="button-container">
+            <a href="{% url 'provider' %}" class="button" style="font-size: large;"><b>Provide</b></a>
+        </div>
+        <div class="text-right">
+            <h2 style="text-align: center;">Provide your space</h2>
+            <p style="text-align: center;">Have your parking space empty, rent it out!!</p>
+        </div>
+    </div>
+    <div class="logout-container">
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    </div>
+</body>
+</html>

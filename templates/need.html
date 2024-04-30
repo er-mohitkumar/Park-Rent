@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WheelOS - Explore Your Destination</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.css">
+    <style>
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar-brand {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .navbar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+        .navbar-right {
+            float: right;
+            margin-right: 20px;
+        }
+
+        /* Content styling */
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        #map {
+            height: 550px;
+        }
+
+        .container {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .container a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container a:hover {
+            color: #04AA6D;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="navbar">
+    <small style="font-size: large;" class="navbar-brand">WheelOS</small>
+    <a href="{% url 'display' %}" class="active">Home</a>
+    <a href="{% url 'profile' %}">Profile</a>
+    <div class="navbar-right">
+    <a href="{% url 'book' %}"><b>My Bookings</b></a>
+    <a href="{% url 'logout' %}"><small>Logout</small></a>
+    </div>
+</div>
+
+
+<div class="content">
+  <div id="map"></div>
+  <div class="container">
+      
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.js"></script>
+<script>
+
+    var map = L.map('map').setView([23.25469, 77.40289],5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18
+    }).addTo(map);
+
+    L.Control.geocoder().addTo(map);
+
+    {% for list in lists %}
+    {% if list.user != request.user and not list.status %}
+      var marker = L.marker([{{list.latitude}}, {{list.longitude}}]).addTo(map);
+      marker.bindPopup("Rs. {{list.rate}} per day <br> <a href='{% url 'myBookings' id=list.id %}'>Book</a>").openPopup();
+  {% endif %}
+  {% endfor %}
+</script>
+</body>
+</html>
