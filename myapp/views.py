@@ -16,9 +16,107 @@ from django.core.management.base import BaseCommand
 from datetime import datetime, timedelta
 from django.urls import reverse
 
+import cv2
+import numpy as np
+import cvzone
+import requests
+from ultralytics import YOLO
+import pickle
+import pandas as pd
+import easyocr
+import threading
+
+# Initialize the live camera feed
+LIVE_CAMERA_URL = "http://192.168.236.227:8080/video"
+
+model = YOLO('yolov8s.pt')
+
+# Define COCO class names as a list
+class_list = [
+    "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat",
+    "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
+    "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack",
+    "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball",
+    "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket",
+    "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple",
+    "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair",
+    "couch", "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse", "remote",
+    "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "book",
+    "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
+]
+
+# Load previous polylines and area names
+try:
+    with open("manish", "rb") as f:
+        data = pickle.load(f)
+        polylines, area_names = data['polylines'], data['area_names']
+except FileNotFoundError:
+    polylines = []
+    area_names = []
+
+# Initialize EasyOCR reader
+reader = easyocr.Reader(['en'])
+
+# Define placeholders for real-time data
+real_time_data = {"free_space": 0, "car_count": 0}
+
+# Background thread function to process live feed
+def process_live_feed_continuously():
+    global real_time_data
+    LIVE_CAMERA_URL = "http://example.com/live_feed"
+    while True:
+        try:
+            # Fetch the live camera feed
+            response = requests.get(LIVE_CAMERA_URL, timeout=5)
+            video = np.array(bytearray(response.content), dtype=np.uint8)
+            frame = cv2.imdecode(video, -1)
+        except Exception as e:
+            print(f"Error fetching live camera feed: {e}")
+            real_time_data = {"free_space": 0, "car_count": 0}
+            time.sleep(5)
+            continue
+
+        if frame is not None:
+            # Resize the frame
+            frame = cv2.resize(frame, (1020, 500))
+            
+            # Predict detections using YOLO model
+            results = model.predict(frame)
+            detections = results[0].boxes.data
+            detections_df = pd.DataFrame(detections).astype("float")
+
+            # Find car centroids
+            car_centroids = []
+            for _, row in detections_df.iterrows():
+                x1, y1, x2, y2, _, class_id = map(int, row)
+                class_name = class_list[class_id]
+                if 'car' in class_name:
+                    cx = (x1 + x2) // 2
+                    cy = (y1 + y2) // 2
+                    car_centroids.append((cx, cy))
+
+            # Calculate free space
+            free_space_counter = []
+            for i, polyline in enumerate(polylines):
+                for cx, cy in car_centroids:
+                    result = cv2.pointPolygonTest(np.array(polyline, dtype=np.int32), (cx, cy), False)
+                    if result >= 0:
+                        free_space_counter.append(tuple(map(tuple, polyline)))
+
+            car_count = len(set(free_space_counter))
+            free_space = len(polylines) - car_count
+
+            real_time_data = {"free_space": free_space, "car_count": car_count}
+        else:
+            real_time_data = {"free_space": 0, "car_count": 0}
+
+# Start the background thread
+threading.Thread(target=process_live_feed_continuously, daemon=True).start()
 
 # Create your views here.
-
+def live_footage(request, id):
+    video_url = "http://192.168.236.227:8080/video"
+    return render(request, 'live_footage.html', {'video_url': video_url})
 
 def landingPage(request):
     return render(request,'landingPage.html')
@@ -261,15 +359,21 @@ def confirmed(request):
     return render(request, 'confirmed.html')
 
 def profile(request):
-    booked = myBooking1.objects.filter(user = request.user)
-    myBookings = mapPointers.objects.filter(user = request.user)
-    earn = Earning.objects.get(user = request.user)
+    booked = myBooking1.objects.filter(user=request.user)
+    myBookings = mapPointers.objects.filter(user=request.user)
+    earn = Earning.objects.get(user=request.user)
     user = request.user
     try:
         past = Previous.objects.filter(user=request.user)
     except Previous.DoesNotExist:
         past = None
-    return render(request, 'profile.html',locals())
+
+    # Add real-time data to context
+    free_space = real_time_data["free_space"]
+    car_count = real_time_data["car_count"]
+    context = locals()
+    print("Context passed to template:", context)
+    return render(request, 'profile.html', context)
 
 def profileShow(request):
     lists = mapPointers.objects.filter(user = request.user)

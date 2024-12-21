@@ -30,7 +30,7 @@ class myBooking1(models.Model):
     rate = models.IntegerField()
     photo = models.ImageField()
     var = models.IntegerField(default = 0)
-    email = models.EmailField(default = "megh.shah2003@gmail.com",max_length=254)
+    email = models.EmailField(default = "mohitkumarmk112003@gmail.com",max_length=254)
 
 
 class Booked(models.Model):

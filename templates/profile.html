@@ -303,7 +303,7 @@ table th {
     
             <ul class="nav">
                 <li class="active"><a href="#" onclick="showTable('marked', this)"><i class="fa fa-map-marker" ></i> My Locations</a></li>
-                <li ><a href="#" onclick="showTable('bookings', this)"><i class="fa fa-shopping-bag"></i> My Bookings</a></li>
+                <li ><a href="http://127.0.0.1:8000/book" onclick="showTable('bookings', this)"><i class="fa fa-shopping-bag"></i> My Bookings</a></li>
                 <li><a href="#" onclick="showTable('history', this)"><i class="fa fa-history "></i> Booking History</a></li>
             </ul>
             <!-- <ul class="social" id='mapi'>
@@ -356,6 +356,8 @@ table th {
                       <th scope="col" >Contact</th>
                       <th scope="col" >Status</th>
                       <th scope="col" >Delete</th>
+                      <th scope="col">Free Space</th>
+                      <th scope="col">Car Parked</th>
                     </tr>
                     {% for item in myBookings %}
                       <tr>
@@ -373,9 +375,8 @@ table th {
                         {% if item.status == False %}
                         <td><b>Empty</b></td>
                         <td><a href="{% url 'delLocation' item.id %}" class="delete-link">Delete</a></td>
-                        {% else %}
-                        <td>Booked</td>
-                        <td>Already booked</td>
+                        <td>{{ free_space }}</td>
+                        <td>{{ car_count }}</td>
                         {% endif %}
                       </tr>
                     {% endfor %}

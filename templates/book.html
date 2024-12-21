@@ -341,7 +341,7 @@ table th {
             <br><br>
             <div class="content">
     
-              <table id="bookings";>
+              <table id="bookings">
                 <tr>
                   <th>Sr. No</th>
                   <th>Latitude</th>
@@ -352,6 +352,7 @@ table th {
                   <th>Email</th>
                   <th>Find Way</th>
                   <th>Status</th>
+                  <th>Live Footage</th> <!-- New column -->
                 </tr>
                 {% for item in lists %}
                   <tr>
@@ -361,16 +362,22 @@ table th {
                     <td>{{ item.rate }}</td>
                     <td>
                       <div class="image-gallery">
-                        <img src="{{ item.photo.url }}" alt="Photo" width = "50px">
+                        <img src="{{ item.photo.url }}" alt="Photo" width="50px">
                       </div>
                     </td>
                     <td>{{ item.name }}</td>
                     <td><a href="mailto:{{ item.email }}">Contact</a></td>
                     <td><a href="{% url 'find' id=item.id %}">Way</a></td>
                     <td><a href="{% url 'tripOver' id=item.id %}">Click if trip over</a></td>
+                    <td>
+                      <a href="{% url 'live_footage' id=item.id %}">
+                        <button id="p"><b>Live Video</b></button>
+                      </a>
+                    </td> <!-- Button to redirect to live video -->
                   </tr>
                 {% endfor %}
               </table>
+              
                 
                 
             </div>
